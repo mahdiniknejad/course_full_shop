@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-h6(oj1k_kx719fpn2(q+&udig_r&+t=_7*q11vf*n6g3(_g@jb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     #   Developer Apps
     'main.apps.MainConfig',
+    'eshop.apps.EshopConfig',
 
     #     API apps
     'api.apps.ApiConfig',

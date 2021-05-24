@@ -1,8 +1,12 @@
 from django.shortcuts import render
-
+from django.views.generic import ListView
+from eshop.models import Course
 
 # Create your views here.
-def test(request):
-    context = {
-    }
-    return render(request, './main/index.html', context)
+
+
+class MainPage(ListView):
+    template_name = 'main/index.html'
+
+    def get_queryset(self):
+        return Course.objects.filter(active=True)
