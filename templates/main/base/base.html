@@ -5,8 +5,9 @@
     <title>{% block title %}{% endblock title %}</title>
     {% block header %}
     {% endblock header %}
+
 </head>
-<body class="config">
+<body class="config" style="font-family: Sahel;">
 
 {% include 'main/base/subbase1.html' %}
 <!--====== Main App ======-->
@@ -28,5 +29,15 @@
 
 </div>
 <!--====== End - Main App ======-->
+<script>
+    let new_list = document.querySelector('.scrollable_new');
+    new_list.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 2700,
+            behavior: "smooth",
+        })
+    });
+</script>
 </body>
 </html>

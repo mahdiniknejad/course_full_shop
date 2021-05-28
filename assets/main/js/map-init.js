@@ -22,3 +22,13 @@ function init() {
         map: map,
     });
 }
+
+let new_button = document.querySelector('.scrollable_new');
+new_button.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 2700,
+        behavior: "smooth",
+    })
+    console.log('clicked !!' );
+});

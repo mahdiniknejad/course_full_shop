@@ -1,0 +1,36 @@
+<ul style="width:170px">
+    {% include 'main/headers/category_list.html' with object_list=object_list count=0 %}
+</ul>
+
+{#<ul style="width:170px">#}
+{##}
+{#    {% for obj in object_list %}#}
+{#        {% if not obj.children.all %}#}
+{#            {% if not obj.parent %}#}
+{#                <li>#}
+{#                    <a href="#">{{ obj.title }}</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#        {% else %}#}
+{#            <li class="has-dropdown has-dropdown--ul-left-100">#}
+{##}
+{#                <a>{{ obj.title }}<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>#}
+{##}
+{#                <!--====== Dropdown ======-->#}
+{##}
+{#                <span class="js-menu-toggle"></span>#}
+{#                <ul style="width:118px">#}
+{##}
+{##}
+{#                    {% for sub_obj in obj.children.all %}#}
+{#                        <li>#}
+{#                            <a href="#">{{ sub_obj.title }}</a></li>#}
+{#                        <li>#}
+{#                    {% endfor %}#}
+{##}
+{#                </ul>#}
+{#                <!--====== End - Dropdown ======-->#}
+{#            </li>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#</ul>#}

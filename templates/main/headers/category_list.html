@@ -1,0 +1,22 @@
+{% for object in object_list %}
+    {% if object.children.all %}
+        <li class="has-dropdown has-dropdown--ul-left-100">
+            <a>{{ object.title }}<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i></a>
+
+            <!--====== Dropdown ======-->
+
+            <span class="js-menu-toggle"></span>
+            <ul style="width:118px">
+
+                {% include 'main/headers/category_list.html' with object_list=object.children.all count=1 %}
+
+            </ul>
+
+            <!--====== End - Dropdown ======-->
+        </li>
+    {% elif not object.parent or count %}
+        <li class="">
+            <a href="#">{{ object.title }}</a>
+        </li>
+    {% endif %}
+{% endfor %}
