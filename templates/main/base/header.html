@@ -1,5 +1,6 @@
 {% load static %}
 {% load template_tags %}
+
 <!--====== Main Header ======-->
 <header class="header--style-1">
 
@@ -444,7 +445,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-0.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-0.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -464,7 +466,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-1.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-1.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mega-image">
@@ -473,7 +476,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-2.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-2.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -655,7 +659,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-3.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-3.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 mega-image">
@@ -664,7 +669,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-4.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-4.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -684,7 +690,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-5.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-5.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 mega-image">
@@ -693,7 +700,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-6.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-6.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 mega-image">
@@ -702,7 +710,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-7.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-7.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -883,7 +892,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-8.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-8.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mega-image">
@@ -892,7 +902,8 @@
                                                         <a class="u-d-block" href="shop-side-version-2.html">
 
                                                             <img class="u-img-fluid u-d-block"
-                                                                 src="{% static 'main/images/banners/banner-mega-9.jpg' %}" alt=""></a>
+                                                                 src="{% static 'main/images/banners/banner-mega-9.jpg' %}"
+                                                                 alt=""></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -954,7 +965,15 @@
                         <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
                             <li>
 
-                                <a class="scrollable_new">محصولات جدید</a></li>
+                                <a class="" href="#target">
+
+                                    {% if request.resolver_match.url_name == 'main' %}
+                                        محصولات جدید
+                                    {% elif request.resolver_match.url_name == 'detail' %}
+                                        محصولات پیشنهادی
+                                    {% endif %}
+
+                                </a></li>
                             <li class="has-dropdown">
 
                                 <a>دسته بندی ها<i class="fas fa-angle-down u-s-m-l-6"></i></a>
@@ -1048,7 +1067,8 @@
                                                     <a class="mini-product__link" href="product-detail.html">
 
                                                         <img class="u-img-fluid"
-                                                             src="{% static 'main/images/product/electronic/product3.jpg' %}" alt=""></a>
+                                                             src="{% static 'main/images/product/electronic/product3.jpg' %}"
+                                                             alt=""></a>
                                                 </div>
                                                 <div class="mini-product__info-wrapper">
 
@@ -1078,7 +1098,8 @@
                                                     <a class="mini-product__link" href="product-detail.html">
 
                                                         <img class="u-img-fluid"
-                                                             src="{% static 'main/images/product/electronic/product18.jpg' %}" alt=""></a>
+                                                             src="{% static 'main/images/product/electronic/product18.jpg' %}"
+                                                             alt=""></a>
                                                 </div>
                                                 <div class="mini-product__info-wrapper">
 
@@ -1107,7 +1128,8 @@
 
                                                     <a class="mini-product__link" href="product-detail.html">
 
-                                                        <img class="u-img-fluid" src="{% static 'main/images/product/women/product8.jpg' %}"
+                                                        <img class="u-img-fluid"
+                                                             src="{% static 'main/images/product/women/product8.jpg' %}"
                                                              alt=""></a></div>
                                                 <div class="mini-product__info-wrapper">
 
@@ -1136,7 +1158,8 @@
 
                                                     <a class="mini-product__link" href="product-detail.html">
 
-                                                        <img class="u-img-fluid" src="{% static 'main/images/product/men/product8.jpg' %}"
+                                                        <img class="u-img-fluid"
+                                                             src="{% static 'main/images/product/men/product8.jpg' %}"
                                                              alt=""></a></div>
                                                 <div class="mini-product__info-wrapper">
 

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #     API apps
     'api.apps.ApiConfig',
+    'rest_framework',
 
     #     External Apps
     'jalali_date',

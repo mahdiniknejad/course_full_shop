@@ -1,0 +1,110 @@
+{% extends 'main/base/base.html' %}
+{% block title %}
+    {{ category.title }}
+{% endblock %}
+
+{% block content %}
+    <!--====== Section 1 ======-->
+    <div class="u-s-p-y-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop-p">
+                    <div class="shop-p__toolbar u-s-m-b-30">
+                        <div class="shop-p__meta-wrap u-s-m-b-60" dir="rtl">
+
+                            <span class="shop-p__meta-text-1"> تعداد دوره ها :  {{ object_list.count }}</span>
+                            <div class="shop-p__meta-text-2">
+
+                                <span>دسته بندی :  {{ category.title }}</span>
+                            </div>
+                        </div>
+                        <div class="shop-p__collection">
+                            <div class="row is-grid-active">
+                                {% for object in object_list %}
+
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <div class="product-m">
+                                            <div class="product-m__thumb">
+
+                                                <a class="aspect aspect--bg-grey aspect--square u-d-block"
+                                                   href="product-detail.html">
+
+                                                    <img class="aspect__img" src="{{ object.thumbnail.url }}"
+                                                         alt="{{ object.title }}"></a>
+                                                <div class="product-m__quick-look">
+
+                                                    <a class="fas fa-search" data-modal="modal"
+                                                       data-modal-id="#quick-look"
+                                                       data-tooltip="tooltip" data-placement="top"
+                                                       title="Quick Look"></a>
+                                                </div>
+                                                <div class="product-m__add-cart">
+
+                                                    <a class="btn--e-brand" data-modal="modal"
+                                                       data-modal-id="#add-to-cart">Add
+                                                        to Cart</a></div>
+                                            </div>
+                                            <div class="product-m__content">
+                                                <div class="product-m__category">
+
+                                                </div>
+                                                <div class="product-m__name">
+
+                                                    <a href="{% url 'main:detail' object.slug %}">{{ object.title }}</a>
+                                                </div>
+                                                <div class="product-m__rating gl-rating-style"><i
+                                                        class="fas fa-star"></i><i
+                                                        class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i
+                                                        class="far fa-star"></i><i class="far fa-star"></i>
+
+                                                    <span class="product-m__review">(23)</span></div>
+                                                <div class="product-m__price">
+                                                    {% if object.price %}{{ object.price }}{% else %}
+                                                        رایگان{% endif %}</div>
+                                                <div class="product-m__hover">
+                                                    <div class="product-m__preview-description">
+
+                                                        <span>{{ object.description|truncatewords:20 }}</span>
+                                                    </div>
+                                                    <div class="product-m__wishlist">
+
+                                                        <a class="far fa-heart" href="#" data-tooltip="tooltip"
+                                                           data-placement="top" title="Add to Wishlist"></a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="u-s-p-y-60">
+
+                            <!--====== Pagination ======-->
+                            <ul class="shop-p__pagination">
+                                <li class="is-active">
+
+                                    <a href="shop-grid-full.html">1</a></li>
+                                <li>
+
+                                    <a href="shop-grid-full.html">2</a></li>
+                                <li>
+
+                                    <a href="shop-grid-full.html">3</a></li>
+                                <li>
+
+                                    <a href="shop-grid-full.html">4</a></li>
+                                <li>
+
+                                    <a class="fas fa-angle-right" href="shop-grid-full.html"></a></li>
+                            </ul>
+                            <!--====== End - Pagination ======-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====== End - Section 1 ======-->
+{% endblock %}

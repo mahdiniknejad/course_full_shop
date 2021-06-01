@@ -16,7 +16,7 @@
         </li>
     {% elif not object.parent or count %}
         <li class="">
-            <a href="#">{{ object.title }}</a>
+            <a href="{% url 'main:category' object.slug %}">{{ object.title }}</a>
         </li>
     {% endif %}
 {% endfor %}

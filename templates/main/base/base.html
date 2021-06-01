@@ -5,6 +5,11 @@
     <title>{% block title %}{% endblock title %}</title>
     {% block header %}
     {% endblock header %}
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 
 </head>
 <body class="config" style="font-family: Sahel;">
@@ -24,10 +29,9 @@
     {% include 'main/base/modal.html' %}
     {% include 'main/base/footer_link.html' %}
 
-    {% block footer %}
-    {% endblock footer %}
-
 </div>
+{% block footer %}
+{% endblock footer %}
 <!--====== End - Main App ======-->
 <script>
     let new_list = document.querySelector('.scrollable_new');

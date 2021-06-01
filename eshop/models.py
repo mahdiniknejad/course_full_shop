@@ -29,10 +29,10 @@ class OffCourse(models.Model):
         verbose_name = 'تخفیف'
         verbose_name_plural = 'تخفیفات'
 
-
     def __str__(self):
         return "{event} -  {percent}%  -  {date}".format(event=self.event, percent=self.percent,
-                                                       date=datetime2jalali(self.expire).strftime('%Y/%m/%d'))
+                                                         date=datetime2jalali(self.expire).strftime('%Y/%m/%d'))
+
     def is_active(self):
         if self.expire < timezone.now():
             self.active = False
@@ -98,7 +98,7 @@ class Course(models.Model):
 
     def value_with_off(self):
         event = OffCourse.objects.get(active=True)
-        return self.price - (event.percent / 100  * self.price)
+        return int(self.price - (event.percent / 100 * self.price))
 
 
 class UploadFile(models.Model):
