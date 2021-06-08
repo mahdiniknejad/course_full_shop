@@ -35,18 +35,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     #   Developer Apps
     'main.apps.MainConfig',
     'eshop.apps.EshopConfig',
+    'eaccount.apps.EaccountConfig',
 
     #     API apps
     'api.apps.ApiConfig',
     'rest_framework',
+    'rest_framework.authtoken',
+
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     #     External Apps
     'jalali_date',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,10 +94,23 @@ WSGI_APPLICATION = 'full_shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+from .passwords import dbpassword, dbname, dbuser, dbhost, dbport
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': dbname,
+        'USER': dbuser,
+        'PASSWORD': dbpassword,
+        'HOST': dbhost,
+        'PORT': dbport,
     }
 }
 
@@ -135,6 +160,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'static_cdn' / 'media_root'
 
+AUTH_USER_MODEL = 'eaccount.EditedUser'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -164,3 +191,13 @@ JALALI_DATE_DEFAULTS = {
         }
     },
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
+}
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'

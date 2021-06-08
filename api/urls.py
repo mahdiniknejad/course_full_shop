@@ -1,9 +1,14 @@
 from django.urls import path
-from .views import course, category
+from rest_framework import routers
+from .views import (
+    CourseViewSet,
+)
+
 app_name = 'api'
 
+router = routers.SimpleRouter()
+router.register('course', CourseViewSet, basename='course')
 urlpatterns = [
-    path('course/', course),
-    path('category/course/', category, name="category"),
 ]
 
+urlpatterns += router.urls

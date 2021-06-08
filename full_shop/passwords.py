@@ -1,0 +1,5 @@
+dbname = 'full_shop'
+dbuser = 'postgres'
+dbpassword = 'mn555mesi2302'
+dbhost = '127.0.0.1'
+dbport = '5432'

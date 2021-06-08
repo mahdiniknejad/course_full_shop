@@ -16,22 +16,20 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class CourseSerializer(serializers.Serializer):
-#     # category = models.ManyToManyField('Category', related_name='courses', verbose_name='دسته بندی')
-#
-#     title = serializers.CharField(max_length=244)
-#     slug = serializers.SlugField(max_length=50, allow_unicode=True, allow_blank=False)
-#     teacher = UserSerializer()
-#     thumbnail = serializers.ImageField(allow_empty_file=False)
-#     # category = serializers.HyperlinkedIdentityField(view_name="api:category")
-#     description = serializers.CharField()
-#     price = serializers.IntegerField()
-#     publish = serializers.DateTimeField()
-#     active = serializers.BooleanField()
-#     status = serializers.CharField(max_length=1)
+class CourseSerializer(serializers.Serializer):
+    title = serializers.CharField(max_length=244)
+    slug = serializers.SlugField(max_length=50, allow_unicode=True, allow_blank=False)
+    teacher = UserSerializer(read_only=True)
+    thumbnail = serializers.ImageField(allow_empty_file=False)
+    category = CategorySerializer(many=True, read_only=True)
+    description = serializers.CharField()
+    price = serializers.IntegerField()
+    publish = serializers.DateTimeField()
+    active = serializers.BooleanField()
+    status = serializers.CharField(max_length=1)
 
 
-class CourseSerializer(serializers.ModelSerializer):
+class CreateCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = '__all__'
+        exclude = ['create', 'update']
