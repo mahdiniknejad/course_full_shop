@@ -1,0 +1,114 @@
+{% extends 'main/base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="u-s-p-y-60">
+    <div class="section__content">
+        <div class="container">
+        </div>
+    </div>
+</div>
+
+
+<div class="u-s-p-b-60">
+
+    <div class="section__intro u-s-m-b-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section__text-wrap">
+                        <h1 class="section__heading u-c-secondary">هنوز ثبت نام نکردی ؟</h1>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section__content">
+        <div class="container">
+            <div class="row row--center">
+                <div class="col-lg-6 col-md-8 u-s-m-b-30">
+                    <div class="l-f-o">
+                        <div class="l-f-o__pad-box">
+                            <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
+
+                            <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
+                            <div class="u-s-m-b-15">
+
+                                <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
+                            <h1 class="gl-h1">SIGNIN</h1>
+
+                            <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
+                            <form class="l-f-o__form" dir="rtl" method="POST">
+                                {% csrf_token %}
+                                <div class="gl-s-api">
+                                    <div class="u-s-m-b-15">
+
+                                        <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
+
+                                            <span>Signin with Facebook</span></button></div>
+                                    <div class="u-s-m-b-15">
+
+                                        <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
+
+                                            <span>Signin with Google</span></button></div>
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                    {% if form.username.errors %}
+                                        {% for e in form.username.errors %}
+                                            <p style="color: red;">e</p>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    <label class="gl-label" for="login-email">
+                                    {{ form.username.label }}</label>
+
+                                    {{ form.username }}</div>
+                                <div class="u-s-m-b-30">
+
+
+                                    {% if form.password.errors %}
+                                        {% for e in form.password.errors %}
+                                            <p style="color: red;">e</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <label class="gl-label" for="login-password">
+                                    {{ form.password.label }}</label>
+
+                                    {{ form.password }}</div>
+                                <div class="gl-inline">
+                                    <div class="u-s-m-b-30">
+
+                                        <button class="btn btn--e-transparent-brand-b-2" 
+                                        type="submit" value="ورود">ورود</button></div>
+                                    <div class="u-s-m-b-30">
+
+                                        <a class="gl-link" href="lost-password.html">فراموشی رمز عبور</a></div>
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                     <div class="check-box">
+
+                                        {{ form.remember_me }}
+                                        <div class="check-box__state check-box__state--primary">
+
+                                            <label class="check-box__label" 
+                                            for="{{ form.remember_me.id_for_label}}">
+                                        {{ form.remember_me.label }}</label></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

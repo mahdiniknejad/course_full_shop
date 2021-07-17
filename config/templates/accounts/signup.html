@@ -1,0 +1,136 @@
+{% extends 'main/base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--====== Section 1 ======-->
+<div class="u-s-p-y-60">
+    <!--====== Section Content ======-->
+    <div class="section__content">
+        <div class="container">
+        </div>
+    </div>
+</div>
+<!--====== End - Section 1 ======-->
+
+
+<!--====== Section 2 ======-->
+<div class="u-s-p-b-60">
+
+    <!--====== Section Intro ======-->
+    <div class="section__intro u-s-m-b-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section__text-wrap">
+                        <h1 class="section__heading u-c-secondary">حساب کاربری خود را بسازید</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====== End - Section Intro ======-->
+
+
+    <!--====== Section Content ======-->
+    <div class="section__content">
+        <div class="container">
+            <div class="row row--center">
+                <div class="col-lg-6 col-md-8 u-s-m-b-30">
+                    <div class="l-f-o">
+                        <div class="l-f-o__pad-box">
+                            <h1 class="gl-h1">اطلاعات شخصی</h1>
+                            <form class="l-f-o__form" method="POST" dir="rtl">
+                                {% if form.errors %}
+                                    {% for e in form.errors %}
+                                        <p style="color: red;">{{ e }}</p>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% csrf_token %}
+                                <div class="gl-s-api">
+                                    <div class="u-s-m-b-15">
+
+                                        <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
+
+                                            <span>Signup with Facebook</span></button></div>
+                                    <div class="u-s-m-b-30">
+
+                                        <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
+
+                                            <span>Signup with Google</span></button></div>
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                    <label class="gl-label" 
+                                    for="{{ form.first_name.id_for_label }}">
+                                    {{ form.first_name.label }}</label>
+
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                    <label class="gl-label" 
+                                    for="{{ form.last_name.id_for_label }}">
+                                    {{ form.last_name.label }}</label>
+
+                                    {{ form.last_name }}    
+                                </div>
+                                <div class="gl-inline" dir=ltr>
+                                    <div class="u-s-m-b-30">
+
+                                        <!--====== Date of Birth Select-Box ======-->
+
+                                        <span class="gl-label" style="margin-left:0">تاریخ تولد</span>
+                                        <div class="gl-dob">
+                                            {{ form.day }}
+                                            {{ form.month }}
+                                            {{ form.year }}
+                                        </div>
+                                        <!--====== End - Date of Birth Select-Box ======-->
+                                    </div>
+                                    <div class="u-s-m-b-30" dir="rtl">
+
+                                        <label class="gl-label" for="gender">
+                                        {{ form.gender.label }}</label>
+                                        {{ form.gender }}</div>
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                    <label class="gl-label" for="reg-email">
+                                    {{ form.email.label }}</label>
+
+                                    {{ form.email }}
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                    <label class="gl-label" for="reg-password">
+                                    {{ form.password1.label }}</label>
+
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                    <label class="gl-label" for="reg-password">
+                                    {{ form.password2.label }}</label>
+
+                                    {{ form.password2 }}
+                                </div>
+                                
+
+                                <div class="u-s-m-b-15">
+
+
+                                    <button class="btn btn--e-transparent-brand-b-2" type="submit">ساخت حساب</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====== End - Section Content ======-->
+</div>
+<!--====== End - Section 2 ======-->
+{% endblock content %}

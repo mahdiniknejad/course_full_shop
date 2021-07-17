@@ -1,0 +1,46 @@
+{% extends 'main/base/base.html' %}
+
+{% block title %}
+    {{ object.title }}
+{% endblock %}
+
+{% block header %}
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <div class="app-content">
+        <div class="u-s-p-t-90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <video
+                                id="my-video"
+                                class="video-js"
+                                controls
+                                preload="auto"
+                                width="1000"
+                                poster="{{ object.course.thumbnail.url }}"
+                                data-setup="{}"
+                                style="margin: 2rem auto;"
+                        >
+                            <source src="{{ object.file.url }}" type="video/mp4"/>
+                            {#    <source src="{{ object.file.url }}" type="video/webm" />#}
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a
+                                web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                >supports HTML5 video</a
+                                >
+                            </p>
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+{% endblock %}

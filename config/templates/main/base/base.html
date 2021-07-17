@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    {% include 'main/base/header_link.html' %}
+    <title>{% block title %}{% endblock title %}</title>
+    {% block header %}
+    {% endblock header %}
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+</head>
+<body class="config" style="font-family: Sahel;">
+
+{% include 'main/base/subbase1.html' %}
+<!--====== Main App ======-->
+<div id="app">
+
+    {% include 'main/base/header.html' %}
+    <!--====== App Content ======-->
+    <div class="app-content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <!--====== End - App Content ======-->
+    {% include 'main/base/footer.html' %}
+    {% include 'main/base/modal.html' %}
+    {% include 'main/base/footer_link.html' %}
+
+</div>
+{% block footer %}
+{% endblock footer %}
+<!--====== End - Main App ======-->
+<script>
+    let new_list = document.querySelector('.scrollable_new');
+    new_list.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 2700,
+            behavior: "smooth",
+        })
+    });
+</script>
+</body>
+</html>
