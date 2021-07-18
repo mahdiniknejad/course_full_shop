@@ -38,41 +38,29 @@ class UserRegisterForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'class': 'input-text input-text--primary-style', 'placeholder': 'نام'}),
             'last_name': forms.TextInput(attrs={'class': 'input-text input-text--primary-style', 'placeholder': 'نام خانوادگی'}),
+            'number': forms.TextInput(attrs={'class': 'input-text input-text--primary-style', 'placeholder': 'شماره تلفون'}),
             'email': forms.EmailInput(attrs={'class': 'input-text input-text--primary-style', 'placeholder': 'ایمیل'}),
             'gender': forms.Select(attrs={'class': 'select-box select-box--primary-style u-w-100'})
         }
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     pw1 = cleaned_data.get('password1')
-    #     pw2 = cleaned_data.get('password2')
 
-    #     if len(pw1) < 8:
-    #         raise ValidationError(
-    #             'لطفا رمز عبور مناسب وارد کنید'
-    #         )
-    #     valid_password_char = 0
-    #     for c in pw1:
-    #         if 96 < ord(c) < 123:
-    #             valid_password_char += 1
-    #             break
+    def clean(self):
+        cleaned_data = super().clean()
+        pw1 = cleaned_data.get('password1')
+        pw2 = cleaned_data.get('password2')  
+
+        email = cleaned_data.get('email')
+        e_ex = User.objects.filter(email=email).exists()
+        if e_ex:
+            raise forms.ValidationError('ایمیل وارد شده در سامانه موجود میباشد')
+
+        number = cleaned_data.get('number')
+        n_ex = User.objects.filter(number=number).exists()
+        if n_ex:
+            raise forms.ValidationError('شماره وارد شده در سامانه موجود میباشد')
         
-    #     for c in pw1:
-    #         if 64 < ord(c) < 91:
-    #             valid_password_char += 1
-    #             break
-        
-    #     for c in pw1:
-    #         if 47 < ord(c) < 58:
-    #             valid_password_char += 1
-    #             break
 
-    #     if valid_password_char != 3:
-    #         raise ValidationError(
-    #             'رمز عبور باید شامل حروف بزرگ و کوچک و عدد باشد'
-    #         )         
-
-    #     if pw1 != pw2:
-    #         raise ValidationError(
-    #             'تکرار رمز عبور صحیح نمیباشد'
-    #         )
+        if pw1 != pw2:
+            raise forms.ValidationError(
+                'تکرار رمز عبور صحیح نمیباشد'
+            )

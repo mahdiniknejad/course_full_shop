@@ -41,11 +41,7 @@
                         <div class="l-f-o__pad-box">
                             <h1 class="gl-h1">اطلاعات شخصی</h1>
                             <form class="l-f-o__form" method="POST" dir="rtl">
-                                {% if form.errors %}
-                                    {% for e in form.errors %}
-                                        <p style="color: red;">{{ e }}</p>
-                                    {% endfor %}
-                                {% endif %}
+
 
                                 {% csrf_token %}
                                 <div class="gl-s-api">
@@ -60,6 +56,17 @@
 
                                             <span>Signup with Google</span></button></div>
                                 </div>
+                                {% if messages %}
+                                    {% for m in messages %}
+                                        <p style="color:{{ m.tags }}">{{ m }}</p>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if form.non_field_errors %}
+                                    {% for e in form.non_field_errors %}
+                                        <p style="color: red;">{{ e }}</p>
+                                    {% endfor %}
+                                {% endif %}
                                 <div class="u-s-m-b-30">
 
                                     <label class="gl-label" 
@@ -101,6 +108,13 @@
                                     {{ form.email.label }}</label>
 
                                     {{ form.email }}
+                                </div>
+                                <div class="u-s-m-b-30">
+
+                                    <label class="gl-label" for="reg-email">
+                                    {{ form.number.label }}</label>
+
+                                    {{ form.number }}
                                 </div>
                                 <div class="u-s-m-b-30">
 
