@@ -179,3 +179,16 @@ REST_FRAMEWORK = {
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+
+
+from .passwords import (
+    email_backend, email_host, email_host_password,
+    email_host_user, email_port, email_use_tls
+)
+
+EMAIL_BACKEND = email_backend
+EMAIL_HOST = email_host
+EMAIL_USE_TLS = email_use_tls
+EMAIL_HOST_USER = email_host_user
+EMAIL_HOST_PASSWORD = email_host_password
+EMAIL_PORT = email_port
