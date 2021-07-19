@@ -1,0 +1,7 @@
+{% autoescape off %}
+{% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %} سلام ,
+
+<p>لطفا روی لینک زیر کلیک کنید تا حساب کاربری شما فعال گردد</p>
+
+http://{{ domain }}{% url 'account:activate' uidb64=uid token=token %}
+{% endautoescape %}
