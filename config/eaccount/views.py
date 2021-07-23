@@ -1,22 +1,27 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import LoginView, LogoutView, auth_login, HttpResponseRedirect
-from .forms import AuthForm, UserRegisterForm
 from django.urls import resolve
 from django.contrib.auth import get_user_model
-from jalali_date import datetime2jalali
 from django.contrib import messages
 from django.core.mail import send_mail
-from .tokens import account_activation_token
 from django.views import View
+from jalali_date import datetime2jalali
+from .tokens import account_activation_token
+from .forms import AuthForm, UserRegisterForm
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
-from .tokens import account_activation_token
 
-import datetime
+from django.contrib.auth.views import (
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
+)
+
 import uuid
 import jdatetime
 
@@ -125,3 +130,21 @@ class ActivateAccount(View):
         else:
             messages.warning(request, ('متاسفانه حساب کاربری شما فعال نگردید لطفا از صحت ادرس ارسالی به ایمیل اطمینان حاصل کنید'))
             return redirect('/')
+
+
+class EditedPasswordResetView(PasswordResetView):
+    template_name = './accounts/password/PasswordResetView.html'
+    success_url = reverse_lazy('account:password_reset_done')
+    email_template_name = './emails/password_change.html'
+
+
+class EditedPasswordResetDoneView(PasswordResetDoneView):
+    template_name = './accounts/password/PasswordResetDoneView.html'
+
+
+class EditedPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = './accounts/password/PasswordResetConfirmView.html'
+    success_url = reverse_lazy('account:password_reset_comlete')
+
+class EditedPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = './accounts/password/PasswordResetCompleteView.html'
