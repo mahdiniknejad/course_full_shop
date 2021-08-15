@@ -15,7 +15,7 @@ class EditedUser(AbstractUser):
         max_length=150,
         unique=False,
         help_text='در صورت تمایل برای خود نام کاربری قرار دهید',
-    ) 
+    )
 
     email = models.EmailField(
         blank=False,
@@ -47,4 +47,3 @@ class EditedUser(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ('username', 'number')
-

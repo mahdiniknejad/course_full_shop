@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth.views import LoginView, LogoutView, auth_login, HttpResponseRedirect
+from django.contrib.auth.views import (
+    LoginView,
+    LogoutView,
+    auth_login,
+    HttpResponseRedirect,
+)
 from django.urls import resolve
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.views import View
-from jalali_date import datetime2jalali
 from .tokens import account_activation_token
 from .forms import AuthForm, UserRegisterForm
 
@@ -36,9 +40,9 @@ class EditedLoginView(LoginView):
 
     def get_success_url(self):
         _next = self.request.GET.get('next')
-        url_name = resolve(_next).url_name
-        app_name = resolve(_next).app_name
         if _next is not None:
+            url_name = resolve(_next).url_name
+            app_name = resolve(_next).app_name
             return reverse_lazy(f"{app_name}:{url_name}")
         return reverse_lazy('main:main', kwargs={})
 
@@ -78,8 +82,7 @@ def RegisterView(request):
             year = cd.get('year')
             month = cd.get('month')
             day = cd.get('day')
-            birth = jdatetime.date(int(year), int(
-                month), int(day)).togregorian()
+            birth = jdatetime.date(int(year), int(month), int(day)).togregorian()
             user.set_password(password)
             rand_u = str(uuid.uuid4())
             rand_u = "guest@{rand_username}".format(rand_username=rand_u[0:8])
@@ -90,31 +93,32 @@ def RegisterView(request):
 
             current_site = get_current_site(request)
             mail_subject = 'حساب کاربری خود را تایید کنید'
-            message = render_to_string('emails/active_email.html', {
-                'user': user,
-                'domain': '127.0.0.1:8000/',
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
-            })
+            message = render_to_string(
+                'emails/active_email.html',
+                {
+                    'user': user,
+                    'domain': '127.0.0.1:8000/',
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                },
+            )
             send_mail(mail_subject, message, current_site.domain, (user.email,))
 
             messages.add_message(
                 request,
                 messages.INFO,
-                'حساب با موفقیت ساخته شد برای فعال سازی حساب کافی است ایمیل فرستاده شده را تایید کنید', 
+                'حساب با موفقیت ساخته شد برای فعال سازی حساب کافی است ایمیل فرستاده شده'
+                ' را تایید کنید',
             )
 
     else:
         form = UserRegisterForm(request.POST or None)
 
-    context = {
-        'form': form,
-    }
+    context = {'form': form}
     return render(request, './accounts/signup.html', context)
 
 
 class ActivateAccount(View):
-
     def get(self, request, uidb64, token, *args, **kwargs):
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
@@ -125,10 +129,14 @@ class ActivateAccount(View):
         if user is not None and account_activation_token.check_token(user, token):
             user.is_active = True
             user.save()
-            messages.success(request, ('حساب کاربری شما با موفقیت فعال شد'))
+            messages.success(request, 'حساب کاربری شما با موفقیت فعال شد')
             return redirect('/')
         else:
-            messages.warning(request, ('متاسفانه حساب کاربری شما فعال نگردید لطفا از صحت ادرس ارسالی به ایمیل اطمینان حاصل کنید'))
+            messages.warning(
+                request,
+                'متاسفانه حساب کاربری شما فعال نگردید لطفا از صحت ادرس ارسالی به ایمیل'
+                ' اطمینان حاصل کنید',
+            )
             return redirect('/')
 
 
@@ -145,6 +153,7 @@ class EditedPasswordResetDoneView(PasswordResetDoneView):
 class EditedPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = './accounts/password/PasswordResetConfirmView.html'
     success_url = reverse_lazy('account:password_reset_comlete')
+
 
 class EditedPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = './accounts/password/PasswordResetCompleteView.html'

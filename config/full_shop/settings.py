@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     #     External Apps
     'jalali_date',
+    'drf_yasg',
 ]
 
 SITE_ID = 1
